@@ -8,3 +8,5 @@ CREATE TABLE animals (
    neutered        BOOL NOT NULL,
    weight_kg       FLOAT NOT NULL
 );
+
+ALTER TABLE animals ADD COLUMN species VARCHAR(30);
