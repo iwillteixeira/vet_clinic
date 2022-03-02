@@ -14,7 +14,7 @@ ALTER TABLE animals ADD COLUMN species VARCHAR(30);
 CREATE TABLE owners (
    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
    full_name VARCHAR(60) NOT NULL,
-   age INT NOT NULL
+   age INT
 );
 
 CREATE TABLE species(
@@ -52,3 +52,13 @@ CREATE TABLE visits (
    FOREIGN KEY (vets_id) REFERENCES vets(id),
    PRIMARY KEY (animals_id,vets_id, date_of_visit)
 );
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+ALTER TABLE owners ALTER COLUMN age DROP NOT NULL;
+ALTER TABLE visits DROP CONSTRAINT visits_pkey;
+
+CREATE INDEX visits_animal_id_asc ON visits(animals_id ASC);
+
+CREATE INDEX visits_vet_id_asc ON visits(vets_id ASC);
+
+CREATE INDEX owners_email_asc ON owners(email ASC);
